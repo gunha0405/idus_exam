@@ -65,7 +65,7 @@ public class User implements UserDetails {
         return true;
     }
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "user")
     private List<Order> orders = new ArrayList<>();
 
 }
