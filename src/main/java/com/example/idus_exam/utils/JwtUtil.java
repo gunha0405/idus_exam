@@ -23,7 +23,7 @@ public class JwtUtil {
             return User.builder()
                     .idx(claims.get("userIdx", Long.class))
                     .email(claims.get("userEmail", String.class))
-                    .nickName(claims.get("userEmail", String.class))
+                    .nickName(claims.get("userNickName", String.class))
                     .role(claims.get("userRole", String.class))
                     .build();
 
