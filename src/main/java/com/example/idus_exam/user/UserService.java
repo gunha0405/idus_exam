@@ -34,4 +34,12 @@ public class UserService implements UserDetailsService {
 
         return UserDto.SignupResponse.from(user);
     }
+
+    public UserDto.UserInfoResponse getUserInfo(Long userIdx) {
+        Optional<User> result = userRepository.findById(userIdx);
+        if (result.isPresent()) {
+            return UserDto.UserInfoResponse.from(result.get());
+        }
+        return null;
+    }
 }

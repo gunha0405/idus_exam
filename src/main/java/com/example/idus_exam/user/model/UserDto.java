@@ -28,4 +28,19 @@ public class UserDto {
             return new SignupResponse(user.getIdx(), user.getNickName());
         }
     }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UserInfoResponse {
+        private String name;
+        private String nickName;
+        private String phoneNumber;
+        private String email;
+        private String gender;
+        public static UserInfoResponse from(User user) {
+            return new UserInfoResponse(user.getName(), user.getNickName(), user.getPhoneNumber(), user.getEmail(), user.getGender());
+        }
+    }
+
 }
