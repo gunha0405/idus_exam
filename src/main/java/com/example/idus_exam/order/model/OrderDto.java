@@ -19,4 +19,22 @@ public class OrderDto {
         }
 
     }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class LastOrderResponse {
+        private Long orderNo;
+        private String productName;
+        private String orderDate;
+
+        public static LastOrderResponse from(Order order) {
+            return new LastOrderResponse(
+                    order.getOrderNo(),
+                    order.getProductName(),
+                    order.getOrderDate()
+            );
+        }
+    }
+
 }
