@@ -47,8 +47,13 @@ public class UserController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<UserDto.UserPageResponse> userList(int page, int size) {
-        UserDto.UserPageResponse list = userService.getUserList(page, size);
+    public ResponseEntity<UserDto.UserPageResponse> userList(
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String name,
+            @RequestParam int page,
+            @RequestParam int size
+    ) {
+        UserDto.UserPageResponse list = userService.getUserList(name, email, page, size);
         return ResponseEntity.ok(list);
     }
 

@@ -1,9 +1,8 @@
 package com.example.idus_exam.user.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.example.idus_exam.order.model.Order;
+import com.example.idus_exam.order.model.OrderDto;
+import lombok.*;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -37,14 +36,26 @@ public class UserDto {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
+    @Builder
     public static class UserInfoResponse {
         private String name;
         private String nickName;
         private String phoneNumber;
         private String email;
         private String gender;
+        private OrderDto.LastOrderResponse lastOrder;
+        public static UserInfoResponse from(User user, Order lastOrder) {
+            return new UserInfoResponse(
+                    user.getName(),
+                    user.getNickName(),
+                    user.getPhoneNumber(),
+                    user.getEmail(),
+                    user.getGender(),
+                    lastOrder != null ? OrderDto.LastOrderResponse.from(lastOrder) : null
+            );
+        }
         public static UserInfoResponse from(User user) {
-            return new UserInfoResponse(user.getName(), user.getNickName(), user.getPhoneNumber(), user.getEmail(), user.getGender());
+            return UserInfoResponse.builder().name(user.getName()).nickName(user.getNickName()).phoneNumber(user.getPhoneNumber()).email(user.getEmail()).gender(user.getGender()).build();
         }
     }
 
