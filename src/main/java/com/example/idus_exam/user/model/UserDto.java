@@ -28,4 +28,7 @@ public class UserDto {
             return new SignupResponse(user.getIdx(), user.getNickName());
         }
     }
+
+
+
 }
