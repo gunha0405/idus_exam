@@ -37,13 +37,19 @@ public class UserController {
         return ResponseEntity.ok("로그아웃 성공");
     }
 
-    @GetMapping("/userInfo")
+    @GetMapping("/info")
     public ResponseEntity<UserDto.UserInfoResponse> userInfo() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
         Long userIdx = user.getIdx();
         UserDto.UserInfoResponse response = userService.getUserInfo(userIdx);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<UserDto.UserPageResponse> userList(int page, int size) {
+        UserDto.UserPageResponse list = userService.getUserList(page, size);
+        return ResponseEntity.ok(list);
     }
 
 }
