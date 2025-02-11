@@ -1,8 +1,13 @@
 package com.example.idus_exam.user.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Page;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserDto {
     @Getter
@@ -29,6 +34,46 @@ public class UserDto {
         }
     }
 
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UserInfoResponse {
+        private String name;
+        private String nickName;
+        private String phoneNumber;
+        private String email;
+        private String gender;
+        public static UserInfoResponse from(User user) {
+            return new UserInfoResponse(user.getName(), user.getNickName(), user.getPhoneNumber(), user.getEmail(), user.getGender());
+        }
+    }
 
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class UserPageResponse {
+        private int page;
+        private int size;
+        private long totalElements;
+        private int totalPages;
+        private boolean hasNext;
+        private boolean hasPrevious;
+
+        private List<UserInfoResponse> userList;
+
+        public static UserPageResponse from(Page<User> userPage) {
+            return UserPageResponse.builder()
+                    .page(userPage.getNumber())
+                    .size(userPage.getSize())
+                    .totalElements(userPage.getTotalElements())
+                    .totalPages(userPage.getTotalPages())
+                    .hasNext(userPage.hasNext())
+                    .hasPrevious(userPage.hasPrevious())
+                    .userList(userPage.stream().map(UserDto.UserInfoResponse::from).collect(Collectors.toList()))
+                    .build();
+        }
+
+    }
 
 }
