@@ -1,4 +1,8 @@
 spring:
+  sql:
+    init:
+      mode: always
+
   mail:
     host: smtp.gmail.com
     port: 587
@@ -27,7 +31,8 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MariaDBDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
+    defer-datasource-initialization: true   # dataSource ??? ?? DB? ??? ? ??, ?? ????? ??
     properties:
       hibernate:
         format_sql: true

@@ -10,7 +10,7 @@ public class OrderDto {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class OrderResponse {
-        private Long orderNo;
+        private String orderNo;
         private String productName;
         private String orderDate;
 
@@ -24,7 +24,7 @@ public class OrderDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class LastOrderResponse {
-        private Long orderNo;
+        private String orderNo;
         private String productName;
         private String orderDate;
 
