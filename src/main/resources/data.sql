@@ -1,4 +1,5 @@
-
+DROP DATABASE IF EXISTS `ogh`;
+CREATE DATABASE  IF NOT EXISTS `ogh` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `ogh`;
 -- MySQL dump 10.13  Distrib 8.0.40, for macos14 (x86_64)
 --
@@ -21,7 +22,15 @@ USE `ogh`;
 -- Table structure for table `orders`
 --
 
+DROP TABLE IF EXISTS `orders`;
 DROP TABLE IF EXISTS `user`;
+
+
+--
+-- Table structure for table `user`
+--
+
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
@@ -55,8 +64,6 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-
-DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orders` (
@@ -79,9 +86,5 @@ LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `user`
---
 
 -- Dump completed on 2025-02-12 11:42:00
